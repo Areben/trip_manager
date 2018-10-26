@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+    <h2><a href= "/logout">Log out</a>
+    | <a href= "/travels/{{request.session.id}}">Home</a></h2>
+
+    <h2>Destination: {{trip.dest}} </h2>
+    <p>Planned by: {{trip.planner.firstName}} {{trip.planner.lastName}} </p>
+    <p>Description: {{trip.desc}} </p>
+    <p>Travel Date From: {{trip.start}} </p>
+    <p>Travel Date To: {{trip.end}} </p>
+
+    <h2>Other Users Joining the Trip</h2>
+        {% for o in others %}
+            <h4>{{ o.firstName }} {{o.lastName}}</h4>
+        {% endfor %}
+
+</body>
+</html>

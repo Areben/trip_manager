@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trip Schedule</title>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+		padding: 10px;
+    }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+
+            <th>|  Welcom {{ user.firstName }}  |</th>
+			<th>
+                <a href="/addtrip">|  Add Trip |</a>
+			</th>
+            <th>
+                <form action="/logout">
+		        	<input type="submit" value="Logout">
+		    	</form>
+            </th>
+
+        </tr>
+    </table>
+
+    <h3>Your Trip Schedules!</h3>
+
+    <table>
+        <tr>
+            <th> Description </th>
+            <th> Travel Start Date </th>
+            <th> Travel End Date </th>
+            <th> Plan </th>
+            <th> Action </th>
+        </tr>
+    {% if Utrips %}
+    {% for t in Utrips %}
+        <tr>
+            <td>
+                <a href="/viewtrip/{{t.id}}">{{ t.desc }}</a>
+            </td>
+            <td>{{ t.start }}</td>
+            <td>{{ t.end }}</td>
+            <td>{{ t.dest }}</td>
+            <td>
+                <a href="/cancel/{{ t.id }}">Cancel</a>
+                <a href="/delete/{{ t.id }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+
+    {% if others %}
+    {% for t in others %}
+        <tr>
+            <td>
+                <a href="/viewtrip/{{t.id}}">{{ t.desc }}</a>
+            </td>
+            <td>{{ t.start }}</td>
+            <td>{{ t.end }}</td>
+            <td>{{ t.dest }}</td>
+            <td>
+                <a href="/cancel/{{ t.id }}">Cancel</a>
+                <a href="/delete/{{ t.id }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+
+    </table>
+
+    <h3>Other Users Travel Plans!</h3>
+
+    <table>
+        <tr>
+            <th>  Name  </th>
+            <th>  Travel Start Date  </th>
+            <th>  Travel End Date  </th>
+            <th>  Do You Want to Join?  </th>
+        </tr>
+    {% if Atrips %}
+    {% for a in Atrips %}
+        <tr>
+            <td>
+                <a href="/viewtrip/{{a.id}}">{{a.dest}}</a>
+            </td>
+            <td>{{a.start}}</td>
+            <td>{{a.end}}</td>
+            <td>
+                <a href="/join/{{a.id}}">Join</a>
+            </td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+    </table>
+
+</body>
+</html>
